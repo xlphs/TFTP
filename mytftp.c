@@ -216,7 +216,7 @@ void send_data(int sockfd, struct sockaddr *to_addr, socklen_t addr_len, char *f
 		
 		sigsetjmp(timeoutbuf, 1); // jump for retransmission
 		if (is_debugging) printf("Sending DATA for block #%d\n", block);
-		n = sendto(sockfd, dataPacket, sizeof(TFTP_Data), 0, to_addr, addr_len);
+		n = sendto(sockfd, dataPacket, 4 + n, 0, to_addr, addr_len);
 		if (n < 0) {
 			if (is_debugging) printf("Error sending DATA block #%d\n", block);
 			break;
